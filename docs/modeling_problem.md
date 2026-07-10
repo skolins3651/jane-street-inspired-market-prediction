@@ -20,31 +20,57 @@ The prediction is assumed to be made after the market close on trading day $t$.
 
 This means that features for date $t$ may use that day's open, high, low, close, and volume, along with historical information from prior dates. Features may not use information from date $t+1$ or later.
 
-## Response Variable
+## Primary Response Variable
 
-The primary continuous response variable, `resp`, is the next-day SPY-relative excess return:
+The primary continuous response variable is `resp_1d`, the next-day SPY-relative excess return.
 
 ```text
-stock_return_t1 = close_stock[t+1] / close_stock[t] - 1
+stock_return_1d_forward = close_stock[t+1] / close_stock[t] - 1
 
-spy_return_t1 = close_SPY[t+1] / close_SPY[t] - 1
+spy_return_1d_forward = close_SPY[t+1] / close_SPY[t] - 1
 
-resp = stock_return_t1 - spy_return_t1
+resp_1d = stock_return_1d_forward - spy_return_1d_forward
 ```
 
-A positive `resp` means that the stock outperformed SPY over the next close-to-close trading interval. A negative `resp` means that the stock underperformed SPY over that interval.
+A positive `resp_1d` means that the stock outperformed SPY over the next close-to-close trading interval. A negative `resp_1d` means that the stock underperformed SPY over that interval.
+
+The project uses `resp_1d` rather than a generic `resp` column name so the prediction horizon remains explicit. Additional response horizons may be added in later extensions, but the baseline modeling problem focuses only on next-day outperformance.
 
 ## Binary Target
 
-The initial model target is a binary classification label:
+The initial model target is `target_1d`, a binary classification label:
 
 ```text
-target = 1 if resp > 0 else 0
+target_1d = 1 if resp_1d > 0 else 0
 ```
 
 A target value of `1` means the stock outperformed SPY over the next trading day. A target value of `0` means the stock did not outperform SPY.
 
-If `resp` is exactly zero, the target is defined as `0`, because the stock did not outperform the benchmark.
+If `resp_1d` is exactly zero, `target_1d` is defined as `0`, because the stock did not outperform the benchmark.
+
+## Observation Weights
+
+The initial modeling dataset includes two observation-weight columns.
+
+```text
+weight_equal = 1.0
+```
+
+`weight_equal` treats every valid stock-date observation equally. This is the clearest default for baseline modeling because it makes the first results easy to interpret.
+
+The dataset also includes a liquidity-based weight:
+
+```text
+dollar_volume = close * volume
+
+adv20 = 20-day rolling average of dollar_volume for each stock, using information available through day t
+
+weight_liquidity = adv20 / cross_sectional_mean_adv20_on_date_t
+```
+
+`weight_liquidity` gives more importance to observations from more liquid stocks while keeping the average liquidity weight on each date close to `1.0`. This makes liquidity-weighted results comparable to equal-weight results without allowing the overall scale of weights to drift upward or downward over time.
+
+The initial dataset does not intentionally create zero-weight observations. Zero weights may be considered later if a clear exclusion rule is introduced, but arbitrary zero weights would not have a well-defined meaning in this public-data adaptation.
 
 ## Action Definition
 

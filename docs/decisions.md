@@ -54,6 +54,39 @@ target = 1 if resp > 0 else 0
 
 The initial action space is binary. An action of `1` means taking the long stock opportunity, while an action of `0` means passing. Shorting, intraday prediction, longer primary horizons, and regression-based return prediction are intentionally deferred to later project phases.
 
+### D010 — Create only the primary next-day target for the baseline modeling dataset
+
+The initial modeling dataset will create one primary response horizon: next-day SPY-relative excess return.
+
+The main target columns are:
+
+```text
+stock_return_1d_forward
+spy_return_1d_forward
+resp_1d
+target_1d
+```
+
+`resp_1d` is defined as next-day stock return minus next-day SPY return. `target_1d` equals `1` when `resp_1d > 0` and `0` otherwise.
+
+Secondary response horizons, such as 5-day or 10-day forward returns, are intentionally deferred. They may be useful for later model comparisons or extensions, but they are not needed for the initial baseline modeling problem.
+
+The initial modeling dataset will also include two observation-weight columns:
+
+```text
+weight_equal = 1.0
+```
+
+and
+
+```text
+weight_liquidity = adv20 / cross_sectional_mean_adv20_on_date_t
+```
+
+where `adv20` is each stock's 20-day rolling average dollar volume, calculated using information available through day $t$.
+
+Equal weights will be the default for the first baseline results. Liquidity weights are included so later evaluations can test whether weighting observations by economic significance changes the conclusions.
+
 ## Known Limitations
 
 ### Fixed-universe selection bias
@@ -82,14 +115,13 @@ The initial dataset does not yet model transaction costs, bid-ask spreads, slipp
 
 ## Open Design Decisions
 
-The following questions remain unresolved and should be answered before or during later phases:
+The following questions remain unresolved and should be answered before or during later work:
 
-1. Will additional return horizons be created to parallel the original `resp` variables?
-2. How will observation weights be defined?
-3. How will the Jane Street utility score be adapted to stock-date observations?
-4. Which initial engineered features will be included?
-5. How will chronological training, validation, and test periods be chosen?
-6. How will transaction costs and other trading frictions eventually be incorporated?
-7. Will later phases explore regression-based return prediction, probability thresholds, shorting, or longer-horizon targets?
+1. Which initial engineered features will be included?
+2. How will chronological training, validation, and test periods be chosen?
+3. Which baseline strategies and baseline models will be compared?
+4. How will the Jane Street utility score be adapted to stock-date observations?
+5. How will transaction costs and other trading frictions eventually be incorporated?
+6. Will later extensions explore additional response horizons, regression-based return prediction, probability thresholds, shorting, or longer-horizon targets?
 
-Some earlier open questions were resolved in D009, including prediction timing, the primary target horizon, the use of SPY-relative returns, and the initial binary action definition.
+Some earlier open questions were resolved in the initial modeling decisions (D009 and D010 especially), including prediction timing, the primary target horizon, the use of SPY-relative returns, the binary action definition, and the initial observation-weight definitions.
