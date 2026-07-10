@@ -81,7 +81,7 @@ action = 1 means take the long stock opportunity
 action = 0 means pass
 ```
 
-In Phase 3, the model does not short stocks. It only decides whether to take or pass on a long opportunity.
+The initial model does not short stocks. It only decides whether to take or pass on a long opportunity.
 
 ## Relationship Between Target and Action
 
@@ -116,4 +116,4 @@ Excluded from the initial scope:
 * regression-based return prediction;
 * utility-optimized threshold selection.
 
-These exclusions are intentional. They keep the project focused on creating a clean baseline problem before more advanced modeling and evaluation choices are introduced in later phases.
+These exclusions are intentional. They keep the project focused on creating a clean baseline problem before more advanced modeling and evaluation choices are introduced in future extensions.
