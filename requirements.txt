@@ -3,4 +3,4 @@ pandas
 matplotlib
 yfinance
 pyarrow
-ipykernel
+ipykernelscikit-learn
