@@ -36,6 +36,24 @@ The project is intended to preserve the original challenge’s time-ordered pred
 
 Future train, validation, and test splits will respect time order. Random shuffling will not be used for primary model evaluation.
 
+### D009 — Define the initial modeling problem as next-day SPY-relative outperformance
+
+The initial Phase 3 prediction problem uses one row per stock-date observation, excluding SPY as a tradable prediction row. The model observes features available by the close of trading day $t$ and predicts whether the stock will outperform SPY from close $t$ to close $t+1$.
+
+The primary continuous response variable is next-day excess return relative to SPY:
+
+```text
+resp = next_day_stock_return - next_day_spy_return
+```
+
+The binary target is:
+
+```text
+target = 1 if resp > 0 else 0
+```
+
+The initial action space is binary. An action of `1` means taking the long stock opportunity, while an action of `0` means passing. Shorting, intraday prediction, longer primary horizons, and regression-based return prediction are intentionally deferred to later project phases.
+
 ## Known Limitations
 
 ### Fixed-universe selection bias
@@ -66,15 +84,12 @@ The initial dataset does not yet model transaction costs, bid-ask spreads, slipp
 
 The following questions remain unresolved and should be answered before or during later phases:
 
-1. At what precise point during each trading day is a prediction assumed to be made?
-2. Which future-return horizon will be the primary prediction target?
-3. Will the target use absolute returns, SPY-relative excess returns, or both?
-4. Will additional return horizons be created to parallel the original `resp` variables?
-5. How will observation weights be defined?
-6. What rule will convert a model prediction into an execute-or-pass action?
-7. How will the Jane Street utility score be adapted to stock-date observations?
-8. Which initial engineered features will be included?
-9. How will chronological training, validation, and test periods be chosen?
-10. How will transaction costs and other trading frictions eventually be incorporated?
+1. Will additional return horizons be created to parallel the original `resp` variables?
+2. How will observation weights be defined?
+3. How will the Jane Street utility score be adapted to stock-date observations?
+4. Which initial engineered features will be included?
+5. How will chronological training, validation, and test periods be chosen?
+6. How will transaction costs and other trading frictions eventually be incorporated?
+7. Will later phases explore regression-based return prediction, probability thresholds, shorting, or longer-horizon targets?
 
-These questions are intentionally left open until the relevant modeling and evaluation phases. Recording them now prevents provisional assumptions from becoming invisible architectural decisions.
+Some earlier open questions were resolved in D009, including prediction timing, the primary target horizon, the use of SPY-relative returns, and the initial binary action definition.
