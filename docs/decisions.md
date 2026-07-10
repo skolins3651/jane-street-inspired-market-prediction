@@ -87,6 +87,52 @@ where `adv20` is each stock's 20-day rolling average dollar volume, calculated u
 
 Equal weights will be the default for the first baseline results. Liquidity weights are included so later evaluations can test whether weighting observations by economic significance changes the conclusions.
 
+### D011 — Use liquidity-weighted adapted utility as the main final evaluation score
+
+The project will evaluate model actions using an adapted Jane Street-style utility score.
+
+For each trading date $t$, daily profit is defined as:
+
+$$
+p_t = \sum_{j=1}^{M} w_{j,t} r_{j,t} a_{j,t}
+$$
+
+where $j$ indexes stocks, $M$ is the number of tradable stocks, $r_{j,t}$ is the value of `resp_1d`, $a_{j,t}$ is the model action, and $w_{j,t}$ is the observation weight.
+
+The consistency multiplier is:
+
+$$
+c
+=
+
+\frac{\sum_t p_t}
+{\sqrt{\sum_t p_t^2}}
+\cdot
+\sqrt{\frac{250}{N}}
+$$
+
+where $N$ is the number of unique trading dates in the evaluated split.
+
+The final adapted utility score is:
+
+$$
+u
+=
+
+\min(\max(c, 0), 6)
+\cdot
+\sum_t p_t
+$$
+
+If $\sum_t p_t^2 = 0$, then the strategy produced zero daily profit on every evaluated date. In that case, the project defines $c = 0$ and $u = 0$.
+
+The score will be calculated under both equal weights and liquidity weights. Equal-weight utility is used as an interpretability and sanity-check score. Liquidity-weighted utility is the main final evaluation score because it better reflects the goal of rewarding consistent above-market performance on more economically meaningful opportunities.
+
+The main model-selection comparison is validation liquidity-weighted utility. Equal-weight utility and companion diagnostics, including `total_profit`, `mean_daily_profit`, `daily_profit_std`, `c_stat`, `action_rate`, and `mean_resp_taken`, should be reported as supporting evidence.
+
+The test split should be reserved for final reporting after the model, feature set, or action rule has already been selected.
+
+
 ## Known Limitations
 
 ### Fixed-universe selection bias
