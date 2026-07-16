@@ -28,28 +28,20 @@ The utility score is calculated from a table containing at least the following c
 
 The response variable is defined as a difference between a stock's next-day return and SPY's next-day return. The former is defined as follows:
 
-$$
-\text{stock\_return\_1d\_forward}_{j,t}
-=
-\frac{\text{close}_{j,t+1}}{\text{close}_{j,t}} - 1
+$$ 
+\text{stock\_return\_1d\_forward}_{j,t} = \frac{\text{close}_{j,t+1}}{\text{close}_{j,t}} - 1 
 $$
 
 where $j$ indexes a stock, $t$ is a trading date, and $\text{close}_{j,t}$ is the closing price of stock $j$ on date $t$. The latter is defined as:
 
 $$
-\text{spy\_return\_1d\_forward}_{t}
-=
-\frac{\text{close}_{\text{SPY},t+1}}{\text{close}_{\text{SPY},t}} - 1
+\text{spy\_return\_1d\_forward}_{t} = \frac{\text{close}_{\text{SPY},t+1}}{\text{close}_{\text{SPY},t}} - 1
 $$
 
 using the same trading-date index $t$, but applied to SPY. Finally, we have:
 
 $$
-\text{resp\_1d}_{j,t}
-=
-\text{stock\_return\_1d\_forward}_{j,t}
--
-\text{spy\_return\_1d\_forward}_{t}.
+\text{resp\_1d}_{j,t} = \text{stock\_return\_1d\_forward}_{j,t} - \text{spy\_return\_1d\_forward}_{t}.
 $$
 
 A positive `resp_1d` means that the stock outperformed SPY over the next close-to-close trading interval. A negative `resp_1d` means that the stock underperformed SPY over that interval.
@@ -59,12 +51,7 @@ A positive `resp_1d` means that the stock outperformed SPY over the next close-t
 For each trading date $t$, daily profit is defined as:
 
 $$
-p_t
-=
-\sum_{j=1}^{M}
-w_{j,t}
-\, r_{j,t}
-\, a_{j,t}
+p_t = \sum_{j=1}^{M} w_{j,t} \, r_{j,t} \, a_{j,t}
 $$
 
 where $M$ is the number of tradable stocks, $w_{j,t}$ is the observation weight of stock $j$ on date $t$, $r_{j,t} = \text{resp\_1d}_{j,t}$, and $a_{j,t}$ is the action for stock $j$ on date $t$. In general, the subscript $j,t$ will always represent $j$ indexing the stock observations available on date $t$ in this document.
@@ -126,13 +113,7 @@ Equal-weight utility is the clearest sanity-check score. It treats every stock-d
 Liquidity-weighted utility is based on each stock's 20-day rolling average dollar volume relative to the cross-sectional average on the same date. The 20-day rolling average dollar volume is calculated as:
 
 $$
-A_{j,t}
-=
-\frac{1}{20}
-\sum_{s=t-19}^{t}
-\text{close}_{j,s}
-\cdot
-\text{volume}_{j,s}
+A_{j,t} = \frac{1}{20} \sum_{s=t-19}^{t} \text{close}_{j,s} \cdot \text{volume}_{j,s}
 $$
 
 where $\text{close}_{j,s}$ is the closing price of stock $j$ on date $s$ and $\text{volume}_{j,s}$ is the trading volume of stock $j$ on date $s$. The product of these two values yields the dollar volume of a stock $j$ on date $s$; the value of $A_{j,t}$, then, represents the average of a certain stock's dollar volumes over the last 20 days.
@@ -140,19 +121,13 @@ where $\text{close}_{j,s}$ is the closing price of stock $j$ on date $s$ and $\t
 We then define the cross-sectional mean dollar volume on a date $t$ as follows:
 
 $$
-\bar{A}_t
-=
-\frac{1}{M}
-\sum_{j=1}^{M}
-A_{j,t}
+\bar{A}_t = \frac{1}{M} \sum_{j=1}^{M} A_{j,t}
 $$
 
 where as before, $M$ is the number of tradable stocks on day $t$. Finally, liquidity weight is defined as:
 
 $$
-w^{\mathrm{liquidity}}_{j,t}
-=
-\frac{A_{j,t}}{\bar{A}_t}
+w^{\mathrm{liquidity}}_{j,t} = \frac{A_{j,t}}{\bar{A}_t}
 $$
 
 Liquidity weighting is used as a practical proxy for economic significance and trading capacity in the public-data setting. It does not perfectly measure institutional opportunity size, market impact, or true trade capacity, but it better reflects the idea that not every stock-date opportunity should count equally.
