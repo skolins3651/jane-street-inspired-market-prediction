@@ -28,21 +28,29 @@ The utility score is calculated from a table containing at least the following c
 
 The response variable is defined as a difference between a stock's next-day return and SPY's next-day return. The former is defined as follows:
 
-$$ 
-\text{stock\_return\_1d\_forward}_{j,t} = \frac{\text{close}_{j,t+1}}{\text{close}_{j,t}} - 1 
-$$
+```math
+\text{stock\_return\_1d\_forward}_{j,t}
+=
+\frac{\text{close}_{j,t+1}}{\text{close}_{j,t}} - 1
+```
 
 where $j$ indexes a stock, $t$ is a trading date, and $\text{close}_{j,t}$ is the closing price of stock $j$ on date $t$. The latter is defined as:
 
-$$
-\text{spy\_return\_1d\_forward}_{t} = \frac{\text{close}_{\text{SPY},t+1}}{\text{close}_{\text{SPY},t}} - 1
-$$
+```math
+\text{spy\_return\_1d\_forward}_{t}
+=
+\frac{\text{close}_{\text{SPY},t+1}}{\text{close}_{\text{SPY},t}} - 1
+```
 
 using the same trading-date index $t$, but applied to SPY. Finally, we have:
 
-$$
-\text{resp\_1d}_{j,t} = \text{stock\_return\_1d\_forward}_{j,t} - \text{spy\_return\_1d\_forward}_{t}.
-$$
+```math
+\text{resp\_1d}_{j,t}
+=
+\text{stock\_return\_1d\_forward}_{j,t}
+-
+\text{spy\_return\_1d\_forward}_{t}.
+```
 
 A positive `resp_1d` means that the stock outperformed SPY over the next close-to-close trading interval. A negative `resp_1d` means that the stock underperformed SPY over that interval.
 
