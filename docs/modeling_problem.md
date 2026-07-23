@@ -89,7 +89,7 @@ The binary target describes what actually happened after the prediction time.
 
 The action describes what the model chooses to do before the outcome is known.
 
-In baseline models, the action may be created directly from a rule or from a predicted probability. Later phases may explore more sophisticated thresholding, probability calibration, or utility-based decision rules.
+In baseline models, the action may be created directly from a rule or from a predicted probability. Future extensions may explore more sophisticated thresholding, probability calibration, or utility-based decision rules.
 
 ## Initial Modeling Scope
 
