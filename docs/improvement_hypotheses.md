@@ -83,7 +83,7 @@ Experiments should be compared primarily using validation liquidity-weighted uti
 
 The test split should not be used to choose features, thresholds, model families, or action rules.
 
-## Contingency Plan
+## Scoped Extension Plan
 
 If none of the planned experiments materially improves validation liquidity-weighted utility, the project will not continue open-ended optimization.
 
@@ -94,4 +94,4 @@ Instead, it will choose either:
 
 Examples of scoped extension experiments include a longer prediction horizon, a more selective action rule, or a liquidity-aware threshold.
 
-The purpose of the contingency plan is to preserve experimental discipline while still leaving room for one thoughtful adjustment if the planned menu does not produce a meaningful improvement.
+The purpose of the scoped extension plan is to preserve experimental discipline while still leaving room for one thoughtful adjustment if the planned improvement experiments do not produce a meaningful improvement.
