@@ -6,9 +6,9 @@ This document defines the final scoped modeling extension for the Jane Street–
 
 The planned improvement experiments produced mixed results.
 
-The strongest improvements came from changing the action rule rather than from changing the feature set or model family alone. Threshold tuning and the utility-aware top-$k$ rule both improved validation liquidity-weighted utility, suggesting that the original logistic-regression probabilities contain some useful broad signal.
+The strongest improvements came from changing the action rule rather than from changing the feature set or model family alone. Threshold tuning and the utility-aware top-<var>k</var> rule both improved validation liquidity-weighted utility, suggesting that the original logistic-regression probabilities contain some useful broad signal.
 
-However, the best-performing rules were not highly selective. The tuned-threshold logistic model took most available opportunities, and the utility-aware top-$k$ rule performed best when taking 20 out of 30 stocks per day.
+However, the best-performing rules were not highly selective. The tuned-threshold logistic model took most available opportunities, and the utility-aware top-<var>k</var> rule performed best when taking 20 out of 30 stocks per day.
 
 This suggests a specific weakness: the existing models are better at identifying broad exposure than at ranking the best few opportunities.
 
@@ -49,7 +49,7 @@ The project will not perform a broad search over model families, feature subsets
 
 ## Selection Rule
 
-Predicted rank scores will be converted into actions using a constrained daily top-$k$ rule.
+Predicted rank scores will be converted into actions using a constrained daily top-<var>k</var> rule.
 
 The candidate values are:
 
