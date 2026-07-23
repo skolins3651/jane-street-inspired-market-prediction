@@ -46,7 +46,7 @@ Examples of pathological behavior include:
 * improvements caused by accidental leakage;
 * repeated tuning on the test split.
 
-## Menu Item A — Probability Threshold Tuning
+## Probability Threshold Tuning
 
 The logistic-regression baseline currently takes an opportunity when its predicted probability is at least `0.5`.
 
@@ -56,7 +56,7 @@ The hypothesis is that a more selective threshold may improve utility by taking 
 
 This experiment changes only the action rule. It does not change the feature set or model family.
 
-## Menu Item B — Feature Expansion
+## Feature Expansion
 
 The initial feature set is intentionally simple. This experiment adds a small number of new leakage-safe features built from information available by the prediction date.
 
@@ -72,7 +72,7 @@ The hypothesis is that the initial model may be limited by weak or overly raw fe
 
 This experiment changes the feature set while keeping the modeling and evaluation framework otherwise comparable.
 
-## Menu Item C — Tree-Based Model
+## Tree-Based Model
 
 The logistic-regression baseline is linear after feature scaling. This experiment tests a simple tree-based model that can capture nonlinear relationships and feature interactions.
 
@@ -86,7 +86,7 @@ The hypothesis is that nonlinear interactions among returns, volatility, range, 
 
 This experiment changes the model family while keeping the prediction target, split structure, and utility scoring framework fixed.
 
-## Menu Item D — Utility-Aware Action Rule
+## Utility-Aware Action Rule
 
 Classification accuracy and utility are not the same objective. A model can have mediocre accuracy but still produce useful actions if it selects opportunities with favorable weighted responses.
 
