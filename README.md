@@ -175,13 +175,14 @@ This project is a research and portfolio project, not a live trading system.
 Important limitations include:
 
 * public daily OHLCV data only;
-* small universe of 30 stocks;
+* small universe of 30 liquid U.S. stocks;
 * no transaction costs or slippage;
 * no market-impact modeling;
 * no borrow constraints;
 * no portfolio construction layer;
 * no walk-forward retraining in the current version;
-* adapted utility score rather than real trading P&L.
+* an adapted utility score rather than real trading P&L;
+* a meaningful train-validation gap in the final model.
 
 Positive validation and test results should be interpreted as evidence of a promising modeling direction, not proof of a deployable trading strategy.
 
