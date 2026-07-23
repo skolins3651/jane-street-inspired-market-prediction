@@ -67,7 +67,7 @@ The model was more selective than logistic regression, but its selected opportun
 
 This suggested that nonlinear classification alone did not solve the main weakness of the baseline framework.
 
-### Utility-Aware Top-$k$ Rule
+### Utility-Aware Top-<var>k</var> Rule
 
 The utility-aware action-rule experiment ranked stocks each day by logistic-regression probability and selected the top $k$.
 
@@ -79,7 +79,7 @@ This result suggested that the logistic-regression probabilities contained some 
 
 The early experiments revealed a consistent pattern.
 
-The easiest improvements came from changing action rules rather than from changing the underlying prediction model. Threshold tuning and top-$k$ selection improved utility, but they did so by taking broad exposure to much of the universe.
+The easiest improvements came from changing action rules rather than from changing the underlying prediction model. Threshold tuning and top-<var>k</var> selection improved utility, but they did so by taking broad exposure to much of the universe.
 
 That created a problem for interpretation.
 
@@ -99,7 +99,7 @@ The cross-sectional rank-regression model reframes the prediction task around da
 
 Instead of training on the binary `target_1d`, the model trains on the daily cross-sectional percentile rank of `resp_1d`. Stocks with higher next-day SPY-relative returns receive higher rank targets within their trading date.
 
-The model uses the expanded 41-feature dataset and a constrained tree-based regressor. Predicted rank scores are then converted into actions using a daily top-$k$ rule.
+The model uses the expanded 41-feature dataset and a constrained tree-based regressor. Predicted rank scores are then converted into actions using a daily top-<var>k</var> rule.
 
 The candidate values were:
 
@@ -130,7 +130,7 @@ This is materially different from the tuned-threshold logistic model, which achi
 
 ## Cross-Sectional Candidate Pattern
 
-The top-$k$ validation pattern was also encouraging.
+The top-<var>k</var> validation pattern was also encouraging.
 
 | Top $k$ | Equal-Weight Utility | Liquidity-Weight Utility | Action Rate | Mean Response Taken |
 |---:|---:|---:|---:|---:|
