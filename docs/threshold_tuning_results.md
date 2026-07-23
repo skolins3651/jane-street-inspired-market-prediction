@@ -44,6 +44,8 @@ The original `0.50` threshold had positive liquidity-weighted utility but negati
 | 0.50 | liquidity-weighted | 2.870843 | 3.435401 | 0.835665 | 0.281836 | -0.000298 |
 | 0.50 | equal-weight | 0.000000 | -1.263731 | -0.740568 | 0.281836 | -0.000298 |
 
+![Logistic threshold tuning curve](../reports/figures/logistic_threshold_tuning_curve.png)
+
 Lowering the threshold from `0.50` to `0.48` improved validation liquidity-weighted utility and also produced positive equal-weight utility.
 
 ## Interpretation
