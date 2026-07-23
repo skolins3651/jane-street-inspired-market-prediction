@@ -51,7 +51,7 @@ Since the tradable universe contains 30 stocks per day, this rule takes approxim
 
 ## Validation Candidate Pattern
 
-The smaller top-k rules generally performed poorly.
+The smaller top-<var>k</var> rules generally performed poorly.
 
 The best utility-aware rule was not highly selective. It selected 20 out of 30 stocks per day, while rules selecting only the top 1, 2, 3, 5, 8, or 10 stocks were weak or negative under equal-weight utility.
 
@@ -71,7 +71,7 @@ This reinforces the importance of checking both weighting schemes.
 
 ## Interpretation
 
-The utility-aware top-k rule improved validation liquidity-weighted utility relative to the original logistic-regression baseline, the expanded-feature logistic model, and the gradient-boosting baseline.
+The utility-aware top-<var>k</var> rule improved validation liquidity-weighted utility relative to the original logistic-regression baseline, the expanded-feature logistic model, and the gradient-boosting baseline.
 
 However, it did not outperform the tuned-threshold logistic rule. The tuned threshold remains the strongest validation result so far.
 
@@ -91,6 +91,6 @@ Instead, it should be treated as evidence about the modeling pipeline:
 
 The utility-aware action rule produced a meaningful improvement over the default logistic-regression action rule, but it did not become the best overall result.
 
-The strongest current candidate remains the tuned-threshold logistic rule. The top-k experiment is valuable because it shows that better probability ranking could be a promising direction for future work.
+The strongest current candidate remains the tuned-threshold logistic rule. The top-<var>k</var> experiment is valuable because it shows that better probability ranking could be a promising direction for future work.
 
 A stronger model that ranks opportunities more effectively might improve utility substantially, especially if it can identify a smaller set of high-quality daily opportunities without relying on a broad action rate.
