@@ -122,6 +122,12 @@ This constraint was intentional. The model needed to show evidence of selective 
 | Utility-aware top-20/day rule | 0.132720 | 4.248294 | 0.666667 | 0.000057 |
 | Cross-sectional rank regression, top-8/day | 8.670413 | 13.182533 | 0.266667 | 0.000926 |
 
+![Validation liquidity-weighted utility by model](../reports/figures/validation_liquidity_utility_by_model.png)
+
+![Validation utility by weighting scheme](../reports/figures/validation_equal_vs_liquidity_utility.png)
+
+![Action rate vs. validation utility](../reports/figures/action_rate_vs_validation_utility.png)
+
 The cross-sectional rank-regression model produced the strongest validation result.
 
 It improved both liquidity-weighted and equal-weight utility while selecting only the top 8 stocks per day. This corresponds to an action rate of approximately `26.7%`.
@@ -141,6 +147,8 @@ The top-<var>k</var> validation pattern was also encouraging.
 | 8 | 8.670413 | 13.182533 | 0.266667 | 0.000926 |
 | 10 | 6.351882 | 10.155362 | 0.333333 | 0.000658 |
 | 15 | 5.882509 | 12.450865 | 0.500000 | 0.000466 |
+
+![Cross-sectional rank regression top-k curve](../reports/figures/rank_regression_top_k_curve.png)
 
 The model did not need to take most of the universe to produce positive results. The strongest range was concentrated between top 3 and top 8 names per day, with top 8 selected by validation liquidity-weighted utility.
 
@@ -168,6 +176,8 @@ As final-reporting context, the selected cross-sectional rank-regression model a
 |---|---:|---:|---:|---:|
 | Validation | 8.670413 | 13.182533 | 0.266667 | 0.000926 |
 | Test | 0.457187 | 8.864430 | 0.266667 | 0.000209 |
+
+![Final model validation vs. test utility](../reports/figures/final_model_validation_vs_test.png)
 
 The test result is weaker than the validation result, especially under equal-weight utility, but it remains positive under liquidity-weighted utility and mean response taken.
 
