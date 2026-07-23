@@ -59,3 +59,11 @@ Because the planned improvement experiments produced only mixed results, the pro
 The selected candidate will serve as the benchmark for that extension.
 
 The extension should be chosen based on the observed failure mode: the current models appear to contain broad weak signal, but they do not rank the best opportunities sharply enough to support a highly selective action rule.
+
+## Later Update
+
+After the planned improvement experiments, the project tested one scoped extension: a cross-sectional rank-regression model.
+
+That model superseded the threshold-tuned logistic candidate. The threshold-tuned logistic model remains the strongest candidate from the planned improvement menu, but the final selected modeling candidate is the cross-sectional rank-regression model with top-8-per-day selection.
+
+See [`modeling_experiment_summary.md`](modeling_experiment_summary.md) for the final consolidated modeling comparison.
