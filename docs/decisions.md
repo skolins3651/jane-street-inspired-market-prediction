@@ -38,7 +38,7 @@ Future train, validation, and test splits will respect time order. Random shuffl
 
 ### D009 — Define the initial modeling problem as next-day SPY-relative outperformance
 
-The initial Phase 3 prediction problem uses one row per stock-date observation, excluding SPY as a tradable prediction row. The model observes features available by the close of trading day $t$ and predicts whether the stock will outperform SPY from close $t$ to close $t+1$.
+The initial prediction problem uses one row per stock-date observation, excluding SPY as a tradable prediction row. The model observes features available by the close of trading day $t$ and predicts whether the stock will outperform SPY from close $t$ to close $t+1$.
 
 The primary continuous response variable is next-day excess return relative to SPY:
 
@@ -52,7 +52,7 @@ The binary target is:
 target = 1 if resp > 0 else 0
 ```
 
-The initial action space is binary. An action of `1` means taking the long stock opportunity, while an action of `0` means passing. Shorting, intraday prediction, longer primary horizons, and regression-based return prediction are intentionally deferred to later project phases.
+The initial action space is binary. An action of `1` means taking the long stock opportunity, while an action of `0` means passing. Shorting, intraday prediction, longer primary horizons, and regression-based return prediction are intentionally deferred to possible future extensions.
 
 ### D010 — Create only the primary next-day target for the baseline modeling dataset
 
