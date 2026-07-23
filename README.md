@@ -158,7 +158,7 @@ The project deliberately moved from simple to more sophisticated approaches.
 5. **Gradient-boosting classifier**  
    Tested whether a nonlinear classifier improved the baseline.
 
-6. **Utility-aware top-k rule**  
+6. **Utility-aware top-<var>k</var> rule**  
    Ranked stocks by logistic-regression probability and selected the top `k` names per day.
 
 7. **Cross-sectional rank regression**  
