@@ -102,13 +102,7 @@ where $j$ indexes stocks, $M$ is the number of tradable stocks, $r_{j,t}$ is the
 The consistency multiplier is:
 
 $$
-c
-=
-
-\frac{\sum_t p_t}
-{\sqrt{\sum_t p_t^2}}
-\cdot
-\sqrt{\frac{250}{N}}
+c = \frac{\sum_t p_t}{\sqrt{\sum_t p_t^2}} \cdot \sqrt{\frac{250}{N}}
 $$
 
 where $N$ is the number of unique trading dates in the evaluated split.
@@ -116,12 +110,7 @@ where $N$ is the number of unique trading dates in the evaluated split.
 The final adapted utility score is:
 
 $$
-u
-=
-
-\min(\max(c, 0), 6)
-\cdot
-\sum_t p_t
+u = \min(\max(c, 0), 6) \cdot \sum_t p_t
 $$
 
 If $\sum_t p_t^2 = 0$, then the strategy produced zero daily profit on every evaluated date. In that case, the project defines $c = 0$ and $u = 0$.
