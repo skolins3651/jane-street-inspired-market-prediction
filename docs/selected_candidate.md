@@ -52,7 +52,7 @@ That caveat matters. A stronger model would ideally improve utility while taking
 
 The selected candidate should therefore be treated as the best current candidate, not as a fully satisfying endpoint.
 
-## Contingency Context
+## Scoped Extension Context
 
 Because the planned improvement experiments produced only mixed results, the project will run one scoped extension experiment before finalizing the modeling story.
 
