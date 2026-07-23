@@ -33,6 +33,10 @@ The final model produced the highest validation utility while selecting only 8 o
 
 The main modeling lesson was that binary classification was not the best framing for the final decision. The strongest result came from learning a daily cross-sectional ranking of opportunities.
 
+![Validation liquidity-weighted utility by model](reports/figures/validation_liquidity_utility_by_model.png)
+
+![Action rate vs. validation utility](reports/figures/action_rate_vs_validation_utility.png)
+
 ## How to Read This Repository
 
 For a quick overview, read this README and the key result table above.
@@ -165,6 +169,8 @@ The project deliberately moved from simple to more sophisticated approaches.
    Reframed the task around daily opportunity ranking and selected the top 8 names per day.
 
 The most important modeling lesson was that binary classification was not the best framing for the final decision. The strongest result came from learning a cross-sectional ranking of daily opportunities.
+
+![Cross-sectional rank regression top-k curve](reports/figures/rank_regression_top_k_curve.png)
 
 See [`docs/modeling_experiment_summary.md`](docs/modeling_experiment_summary.md) for the full modeling story.
 
