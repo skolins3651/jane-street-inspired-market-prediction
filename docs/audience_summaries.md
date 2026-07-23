@@ -36,9 +36,9 @@ This project predicts next-day stock performance relative to SPY using daily adj
 
 The baseline task is binary classification: for each stock-date row, predict whether the stock's next close-to-close return will exceed SPY's next close-to-close return. The project evaluates execute/pass decisions using an adapted Jane Street-style utility score based on selected weighted responses and daily consistency.
 
-Initial models showed that simple binary classification produced weak or broad signals. Threshold tuning and utility-aware top-k selection improved validation utility, but largely by taking a large fraction of the universe.
+Initial models showed that simple binary classification produced weak or broad signals. Threshold tuning and utility-aware top-<var>k</var> selection improved validation utility, but largely by taking a large fraction of the universe.
 
-The final model reframes the problem as cross-sectional rank regression. It trains on the daily percentile rank of future SPY-relative response and uses a constrained top-k selection rule. The selected rule takes the top 8 stocks per day, producing the strongest validation liquidity-weighted utility while keeping the action rate at 26.7%.
+The final model reframes the problem as cross-sectional rank regression. It trains on the daily percentile rank of future SPY-relative response and uses a constrained top-<var>k</var> selection rule. The selected rule takes the top 8 stocks per day, producing the strongest validation liquidity-weighted utility while keeping the action rate at 26.7%.
 
 ## Quant-Oriented Summary
 
